@@ -1,3 +1,3 @@
 SELECT *
 FROM users
-WHERE user_id = $1;
+WHERE email = $1;
