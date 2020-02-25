@@ -10,8 +10,9 @@ CREATE TABLE users
   l_name VARCHAR
 (40),
   email TEXT,
+  discussion_leader BOOLEAN,
   available BOOLEAN,
-  isArrived BOOLEAN
+  hasArrived BOOLEAN
 );
 
 CREATE TABLE event
@@ -19,5 +20,5 @@ CREATE TABLE event
   event_id SERIAL PRIMARY KEY,
   category VARCHAR(50),
   location TEXT,
-  duration TIME
+  -- duration TIME
 );
