@@ -5,6 +5,7 @@ CREATE TABLE events
 (
   event_id SERIAL PRIMARY KEY,
   category VARCHAR(50),
+  description TEXT,
   location TEXT
 );
 
@@ -24,12 +25,9 @@ CREATE TABLE users
   hasArrived BOOLEAN
 );
 
--- INSERT INTO users
---   (first_name, last_name, email, hash)
--- VALUES
---   (
---     "Gio",
---     "Aguirre",
---     "me@its-g.io",
---     "adsouaf9383hr97htgreuhiurp9ufp981hp9fhepvuid923hr9pefeuwbywbef"
---   )
+-- {
+-- 	"first_name": "Gio",
+-- 	"last_name": "Aguirre",
+-- 	"email": "media@its-g.io",
+-- 	"password": "password" 
+-- }
