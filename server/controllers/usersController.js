@@ -5,10 +5,11 @@ async function register(req, res) {
   const db = req.app.get('db');
 
   const result = await db.get_user(email);
-  if (result.length !== 0) return res.status(409).json('Username taken');
+  if (result.length !== 0) return res.status(409).json('Email taken');
 
   const hash = bcrypt.hashSync(password, 12);
   const registeredUser = await db.register_user(first_name, last_name, email, hash);
+  
   const user = registeredUser[0];
   req.session.user = { id: user.user_id, first_name: user.first_name, last_name: user.last_name }
   return res.status(201).json(req.session.user);
