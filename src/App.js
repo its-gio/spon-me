@@ -1,12 +1,15 @@
 import React from 'react';
-import UserMap from './components/UserMap'
+import { HashRouter as Router, Link } from 'react-router-dom'
 import './App.scss';
+import Routes from './routers'
 
 function App() {
   return (
-    <div className="App">
-      <UserMap />
-    </div>
+    <Router>
+      <div className="App">
+        { Routes }
+      </div>
+    </Router>
   );
 }
 

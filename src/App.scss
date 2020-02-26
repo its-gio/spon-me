@@ -1,3 +1,20 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Mr+Dafoe|Vollkorn&display=swap');
+@import './styles/home';
+
+// font-family: 'Mr Dafoe', ;
+// font-family: 'Merriweather Sans', ;
+// font-family: 'Vollkorn', ;
+
+* { box-sizing: border-box; padding: 0; margin:  0; }
+
+body {
+  font-family: 'Vollkorn';
+}
+
+h1 {
+  font-family: 'Mr Dafoe';
+}
+
+h2, h3, h4, h5, h6, input, button {
+  font-family: 'Merriweather Sans';
 }
