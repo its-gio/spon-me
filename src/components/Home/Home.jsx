@@ -5,6 +5,9 @@ import { Features } from './Features';
 
 export default class Home extends Component {
   render() {
+    const textArray = ["Drop a beacon and meet your neighbours", "Make personal connections", "Be spontaneous!"]
+    const iconArray = [<FaMapMarker />, <FaUserPlus />, <FaStar />]
+    const featuresMap = textArray.map((text, i) => <Features key={i} text={text}>{iconArray[i]}</Features>)
     return (
       <section className="home">
         <header>
@@ -22,17 +25,7 @@ export default class Home extends Component {
           <h2>Register Meow!</h2>
           <div className="register-content">
             <div className="register-content--features">
-              <Features text="Drop a beacon and meet your neighbours">
-                  <FaMapMarker />
-              </Features>
-
-              <Features text="Make personal connections">
-                  <FaUserPlus />
-              </Features>
-
-              <Features text="Be spontaneous!">
-                  <FaStar />
-              </Features>
+              { featuresMap }
             </div>
 
             <div className="register-content--form">
