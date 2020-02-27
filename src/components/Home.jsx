@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Home extends Component {
   render() {
     return (
-      <div className="home">
+      <section className="home">
         <header>
           <div className="login">
             <h1>Spontaneous Me</h1>
@@ -13,8 +13,12 @@ export default class Home extends Component {
               <button>Log In</button>
             </form>
           </div>
+
+          <div id="tagline">
+            <h5>Connect with people for no reason at all!</h5>
+          </div>
         </header>
-      </div>
+      </section>
     )
   }
 }
