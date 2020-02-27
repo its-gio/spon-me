@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Mr+Dafoe|Vollkorn&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Lobster|Vollkorn&display=swap');
 @import './styles/home';
 
-// font-family: 'Mr Dafoe', ;
+// font-family: 'Lobster', ;
 // font-family: 'Merriweather Sans', ;
 // font-family: 'Vollkorn', ;
 
@@ -12,7 +12,8 @@ body {
 }
 
 h1 {
-  font-family: 'Mr Dafoe';
+  font-family: 'Lobster';
+  font-weight: 100;
 }
 
 h2, h3, h4, h5, h6, input, button {
