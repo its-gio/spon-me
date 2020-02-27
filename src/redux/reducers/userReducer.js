@@ -14,6 +14,7 @@ const initialState = {
 
 // Actions
 const REQUEST_LOGIN = "REQUEST_LOGIN";
+const GET_SESSION = "GET_SESSION";
 
 // Export Functions
 export function requestLogin(email, password) {
@@ -25,8 +26,18 @@ export function requestLogin(email, password) {
   }
 }
 
+export function getSession() {
+  const data = axios.get('/auth/session').catch(err => console.error(err));
+
+  return {
+    type: GET_SESSION,
+    payload: data
+  }
+}
+
 // Reducer
 export default function reducer(state = initialState, action) {
+  const { payload } = action;
   switch (action.type) {
     case `${REQUEST_LOGIN}_PENDING`:
       return {
@@ -35,13 +46,26 @@ export default function reducer(state = initialState, action) {
       }
 
     case `${REQUEST_LOGIN}_FULFILLED`:
-      const { id, first_name, last_name } = action.payload.data;
-      console.log(action.payload);
       return {
         ...state,
-        user_id: id,
-        first_name,
-        last_name,
+        user_id: payload.data.id,
+        first_name: payload.data.first_name,
+        last_name: payload.data.last_name,
+        loading: false
+      }
+
+    case `${GET_SESSION}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${GET_SESSION}_FULFILLED`:
+      return {
+        ...state,
+        user_id: payload.data.id,
+        first_name: payload.data.first_name,
+        last_name: payload.data.last_name,
         loading: false
       }
 

@@ -17,7 +17,7 @@ function Login(props) {
     e.preventDefault();
     const { email, password } = login;
     setLogin({ email: '', password: '' });
-    props.requestLogin(email, password);
+    props.requestLogin(email, password).catch(err => alert(err));
   }
 
   return (

@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import ReactMapGL, { Marker } from 'react-map-gl'
+import { getSession } from '../redux/reducers/userReducer'
 
-export default function UserMap() {
+function UserMap(props) {
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
     width: '100vw',
     height: '100vh',
     zoom: 17
+  })
+
+  const [user, setUser] = useState({
+    id: null,
+    first_name: null,
+    last_name: null
   })
 
   useEffect(() => {
@@ -19,6 +27,8 @@ export default function UserMap() {
     } else {
       console.error('Geolocation is not supported!')
     }
+
+    setUser(props.getSession())
   }, [])
 
   return (
@@ -37,3 +47,5 @@ export default function UserMap() {
     </div>
   )
 }
+
+export default connect(null, { getSession })(UserMap)

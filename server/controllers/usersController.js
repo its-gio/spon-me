@@ -35,8 +35,13 @@ function logout(req, res) {
   res.sendStatus(200);
 }
 
+function getSession(req, res) {
+  return req.session.user ? res.status(200).json(req.session.user) : res.status(500).json('Session does not exist!');
+}
+
 module.exports = {
   register,
   login,
-  logout
+  logout,
+  getSession
 }
