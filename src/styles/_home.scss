@@ -90,6 +90,32 @@
           }
         }
       }
+
+      &--form {
+
+        input {
+          padding: 10px;
+          margin: 0;
+          margin-left: 2px;
+          margin-bottom: 4px;
+        }
+        
+        &__name {
+          width: calc(50% - 2px);
+        }
+
+        &__email, &__password {
+          width: calc(100% - 2px);
+        }
+
+        &__DOB {
+          width: calc(33.333% - 2px);
+        }
+
+        button {
+          padding: 10px 25px;
+        }
+      }
     }
   }
 }

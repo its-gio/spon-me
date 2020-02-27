@@ -47,13 +47,13 @@ export default class Home extends Component {
             </div>
 
             <div className="register-content--form">
-              <input placeholder="First Name" type="text"/>
-              <input placeholder="Last Name" type="text"/>
-              <input placeholder="Email" type="email"/>
-              <input placeholder="Password" type="password"/>
-              <input placeholder="MM" type="text"/>
-              <input placeholder="DD" type="text"/>
-              <input placeholder="YYYY" type="text"/>
+              <input className="register-content--form__name" name="" placeholder="First Name" type="text"/>
+              <input className="register-content--form__name" name="" placeholder="Last Name" type="text"/>
+              <input className="register-content--form__email" name="" placeholder="Email" type="email"/>
+              <input className="register-content--form__password" name="" placeholder="Password" type="password"/>
+              <input className="register-content--form__DOB" name="" placeholder="MM" type="text"/>
+              <input className="register-content--form__DOB" name="" placeholder="DD" type="text"/>
+              <input className="register-content--form__DOB" name="" placeholder="YYYY" type="text"/>
               <button>Sign Up</button>
             </div>
           </div>
