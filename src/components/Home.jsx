@@ -25,17 +25,23 @@ export default class Home extends Component {
           <div className="register-content">
             <div className="register-content--features">
               <div className="register-content--features__item">
-                <FaMapMarker />
+                <div className="icon" >
+                  <FaMapMarker />
+                </div>
                 <h6>Drop a beacon and meet your neighbours</h6>
               </div>
 
               <div className="register-content--features__item">
-                <FaUserPlus />
+                <div className="icon" >
+                  <FaUserPlus />
+                </div>
                 <h6>Make personal connections</h6>
               </div>
 
               <div className="register-content--features__item">
-                <FaStar />
+                <div className="icon" >
+                  <FaStar />
+                </div>
                 <h6>Be spontaneous!</h6>
               </div>
             </div>
