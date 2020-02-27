@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaMapMarker, FaStar , FaUserPlus } from 'react-icons/fa';
+import { Features } from './Home/Features';
 
 export default class Home extends Component {
   render() {
@@ -24,26 +25,17 @@ export default class Home extends Component {
           <h2>Register Meow!</h2>
           <div className="register-content">
             <div className="register-content--features">
-              <div className="register-content--features__item">
-                <div className="icon" >
+              <Features text="Drop a beacon and meet your neighbours">
                   <FaMapMarker />
-                </div>
-                <h6>Drop a beacon and meet your neighbours</h6>
-              </div>
+              </Features>
 
-              <div className="register-content--features__item">
-                <div className="icon" >
+              <Features text="Make personal connections">
                   <FaUserPlus />
-                </div>
-                <h6>Make personal connections</h6>
-              </div>
+              </Features>
 
-              <div className="register-content--features__item">
-                <div className="icon" >
+              <Features text="Be spontaneous!">
                   <FaStar />
-                </div>
-                <h6>Be spontaneous!</h6>
-              </div>
+              </Features>
             </div>
 
             <div className="register-content--form">
