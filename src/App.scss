@@ -9,6 +9,7 @@
 
 body {
   font-family: 'Vollkorn';
+  color: #333;
 }
 
 h1 {
@@ -18,4 +19,21 @@ h1 {
 
 h2, h3, h4, h5, h6, input, button {
   font-family: 'Merriweather Sans';
+}
+
+input {
+  border: 2px #999 solid;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 2px;
+}
+
+button {
+  cursor: pointer;
+  margin: 2px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: #1aae9f;
 }
