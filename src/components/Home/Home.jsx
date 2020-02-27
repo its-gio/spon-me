@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FaMapMarker, FaStar , FaUserPlus } from 'react-icons/fa';
-import { Features } from './Home/Features';
+import Login from './Login'
+import { Features } from './Features';
 
 export default class Home extends Component {
   render() {
@@ -9,11 +10,7 @@ export default class Home extends Component {
         <header>
           <div className="login">
             <h1>Spontaneous Me</h1>
-            <form>
-              <input type="text" placeholder="Email"/>
-              <input type="text" type="password" placeholder="Password" />
-              <button>Log In</button>
-            </form>
+            <Login />
           </div>
 
           <div id="tagline">

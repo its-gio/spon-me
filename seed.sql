@@ -22,7 +22,7 @@ CREATE TABLE users
   hash TEXT,
   discussion_leader BOOLEAN,
   available BOOLEAN,
-  hasArrived BOOLEAN
+  has_arrived BOOLEAN
 );
 
 -- {
