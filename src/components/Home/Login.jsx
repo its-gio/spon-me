@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { requestLogin } from '../../redux/reducers/userReducer'
 
-function Login() {
+function Login(props) {
   const [login, setLogin] = useState({
     email: '',
     password: ''
@@ -14,11 +15,14 @@ function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { email, password } = login;
     setLogin({ email: '', password: '' });
+    props.requestLogin(email, password);
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      { props.user.user_id ? <Redirect to="/account" /> : null }
       <input onChange={handleChange} value={login.email} name="email" type="text" placeholder="Email"/>
       <input onChange={handleChange} value={login.password} name="password" type="text" type="password" placeholder="Password" />
       <button>Log In</button>
@@ -26,4 +30,4 @@ function Login() {
   )
 }
 
-export default connect(null, { requestLogin })(Login);
+export default connect((reduxState) => ({ user: reduxState.user }), { requestLogin })(Login);

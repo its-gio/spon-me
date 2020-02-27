@@ -17,7 +17,7 @@ const REQUEST_LOGIN = "REQUEST_LOGIN";
 
 // Export Functions
 export function requestLogin(email, password) {
-  const data = axios.post('/auth/login', {email, password}).then(res => res.data).catch(err => console.error(err));
+  const data = axios.post('/auth/login', {email, password});
 
   return {
     type: REQUEST_LOGIN,
@@ -28,14 +28,15 @@ export function requestLogin(email, password) {
 // Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case `${REQUEST_LOGIN}__PENDING`:
+    case `${REQUEST_LOGIN}_PENDING`:
       return {
         ...state,
         loading: true
       }
 
-    case `${REQUEST_LOGIN}__FULFILLED`:
-      const { id, first_name, last_name } = action.payload;
+    case `${REQUEST_LOGIN}_FULFILLED`:
+      const { id, first_name, last_name } = action.payload.data;
+      console.log(action.payload);
       return {
         ...state,
         user_id: id,
