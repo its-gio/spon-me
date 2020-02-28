@@ -7,8 +7,11 @@ export const Navbar = (props) => {
       <div onClick={() => props.setNavActive({ active: false })} className="map--navbar__x">
         <FaTimes />
       </div>
-      <ul>
-        <li>This is a test!</li>
+
+      <ul className="map--navbar__list">
+        <li>Friends List</li>
+        <li>Edit Account</li>
+        <li>Logout</li>
       </ul>
     </div>
   )
