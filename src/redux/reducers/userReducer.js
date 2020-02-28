@@ -15,6 +15,7 @@ const initialState = {
 // Actions
 const REQUEST_LOGIN = "REQUEST_LOGIN";
 const GET_SESSION = "GET_SESSION";
+const GET_LOGOUT = "GET_LOGOUT";
 
 // Export Functions
 export function requestLogin(email, password) {
@@ -32,6 +33,14 @@ export function getSession() {
   return {
     type: GET_SESSION,
     payload: data
+  }
+}
+
+export function logout() {
+  axios.get('/auth/logout').catch(err => console.error(err));
+
+  return {
+    type: GET_LOGOUT
   }
 }
 
@@ -66,6 +75,16 @@ export default function reducer(state = initialState, action) {
         user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
+        loading: false
+      }
+
+    case `${GET_LOGOUT}`:
+      console.log("Logged out!");
+      return {
+        ...state,
+        user_id: null,
+        first_name: null,
+        last_name: null,
         loading: false
       }
 

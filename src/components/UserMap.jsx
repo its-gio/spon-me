@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { getSession } from '../redux/reducers/userReducer';
 import { FaBars } from "react-icons/fa";
 
-import{ Navbar } from './UserMap/Navbar'
+import Navbar from './UserMap/Navbar'
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -14,8 +15,6 @@ function UserMap(props) {
     height: '100%',
     zoom: 17
   })
-
-  const [user, setUser] = useState({})
 
   const [navActive, setNavActive] = useState({ active: false })
 
@@ -30,13 +29,11 @@ function UserMap(props) {
     }
 
     props.getSession()
-      .then(res => setUser({...res.value.data}))
-      .catch(err => console.error(err));
-
   }, [])
 
   return (
     <div className="map">
+      { props.user.user_id === null  ? <Redirect to="/" /> : null }
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
@@ -57,4 +54,6 @@ function UserMap(props) {
   )
 }
 
-export default connect(null, { getSession })(UserMap)
+const mapStateToProps = (reduxState) => ({ user: reduxState.user })
+
+export default connect(mapStateToProps, { getSession })(UserMap)
