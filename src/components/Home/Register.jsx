@@ -1,4 +1,7 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { requestRegister } from '../../redux/reducers/userReducer';
 
 class Register extends React.Component {
   state = {
@@ -12,13 +15,14 @@ class Register extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    console.log(this.state);
+    const { first_name, last_name, email, password } = this.state;
+    this.props.requestRegister(first_name, last_name, email, password);
   }
 
   render () {
     return (
       <form onSubmit={this.handleSubmit} className="register-content--form">
+        { this.props.user.user_id ? <Redirect to="/account" /> : null }
         <input required onChange={this.handleChange} className="register-content--form__name" value={this.state.first_name} name="first_name" placeholder="First Name" type="text"/>
         <input required onChange={this.handleChange} className="register-content--form__name" value={this.state.last_name} name="last_name" placeholder="Last Name" type="text"/>
         <input required onChange={this.handleChange} className="register-content--form__email" value={this.state.email} name="email" placeholder="Email" type="email"/>
@@ -32,4 +36,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register
+export default connect((reduxState) => ({ user: reduxState.user }),{ requestRegister })(Register)

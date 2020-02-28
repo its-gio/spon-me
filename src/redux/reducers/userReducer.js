@@ -13,11 +13,21 @@ const initialState = {
 }
 
 // Actions
+const REQUEST_REGISTER = "REQUEST_REGISTER";
 const REQUEST_LOGIN = "REQUEST_LOGIN";
 const GET_SESSION = "GET_SESSION";
 const GET_LOGOUT = "GET_LOGOUT";
 
 // Export Functions
+export function requestRegister(first_name, last_name, email, password) {
+  const data = axios.post('/auth/register', {first_name, last_name, email, password});
+
+  return {
+    type: REQUEST_LOGIN,
+    payload: data
+  }
+}
+
 export function requestLogin(email, password) {
   const data = axios.post('/auth/login', {email, password});
 
@@ -48,6 +58,21 @@ export function logout() {
 export default function reducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
+    case `${REQUEST_REGISTER}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${REQUEST_REGISTER}_FULFILLED`:
+      return {
+        ...state,
+        user_id: payload.data.user_id,
+        first_name: payload.data.first_name,
+        last_name: payload.data.last_name,
+        loading: false
+      }
+
     case `${REQUEST_LOGIN}_PENDING`:
       return {
         ...state,
