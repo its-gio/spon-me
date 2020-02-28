@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FaMapMarker, FaStar , FaUserPlus } from 'react-icons/fa';
 import Login from './Login'
 import { Features } from './Features';
+import Register from './Register';
 
 export default class Home extends Component {
   render() {
@@ -28,16 +29,7 @@ export default class Home extends Component {
               { featuresMap }
             </div>
 
-            <div className="register-content--form">
-              <input className="register-content--form__name" name="" placeholder="First Name" type="text"/>
-              <input className="register-content--form__name" name="" placeholder="Last Name" type="text"/>
-              <input className="register-content--form__email" name="" placeholder="Email" type="email"/>
-              <input className="register-content--form__password" name="" placeholder="Password" type="password"/>
-              <input className="register-content--form__DOB" name="" placeholder="MM" type="text"/>
-              <input className="register-content--form__DOB" name="" placeholder="DD" type="text"/>
-              <input className="register-content--form__DOB" name="" placeholder="YYYY" type="text"/>
-              <button>Sign Up</button>
-            </div>
+            <Register/>
           </div>
         </div>
       </section>
