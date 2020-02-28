@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
     case `${REQUEST_LOGIN}_FULFILLED`:
       return {
         ...state,
-        user_id: payload.data.id,
+        user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
         loading: false
@@ -63,7 +63,7 @@ export default function reducer(state = initialState, action) {
     case `${GET_SESSION}_FULFILLED`:
       return {
         ...state,
-        user_id: payload.data.id,
+        user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
         loading: false

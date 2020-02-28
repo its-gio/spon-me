@@ -12,11 +12,7 @@ function UserMap(props) {
     zoom: 17
   })
 
-  const [user, setUser] = useState({
-    id: null,
-    first_name: null,
-    last_name: null
-  })
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -28,7 +24,10 @@ function UserMap(props) {
       console.error('Geolocation is not supported!')
     }
 
-    setUser(props.getSession())
+    props.getSession()
+      .then(res => setUser({...res.value.data}))
+      .catch(err => console.error(err));
+
   }, [])
 
   return (
@@ -41,7 +40,6 @@ function UserMap(props) {
             setViewport(viewport)
           }
         }
-        
       >
       </ReactMapGL>
     </div>
