@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import ReactMapGL, { Marker } from 'react-map-gl'
-import { getSession } from '../redux/reducers/userReducer'
+import ReactMapGL, { Marker } from 'react-map-gl';
+import { getSession } from '../redux/reducers/userReducer';
+import { FaBars } from "react-icons/fa";
+
+import{ Navbar } from './UserMap/Navbar'
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     zoom: 17
   })
 
   const [user, setUser] = useState({})
+
+  const [navActive, setNavActive] = useState({ active: false })
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -31,7 +36,7 @@ function UserMap(props) {
   }, [])
 
   return (
-    <div>
+    <div className="map">
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
@@ -42,6 +47,12 @@ function UserMap(props) {
         }
       >
       </ReactMapGL>
+
+      <div onClick={() => setNavActive({ active: true })} className="map--navbtn">
+        <FaBars />
+      </div>
+
+      <Navbar active={navActive.active} setNavActive={setNavActive} />
     </div>
   )
 }
