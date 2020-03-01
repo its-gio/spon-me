@@ -47,10 +47,11 @@ export function getSession() {
 }
 
 export function logout() {
-  axios.get('/auth/logout').catch(err => console.error(err));
+  const data = axios.get('/auth/logout').catch(err => console.error(err));
 
   return {
-    type: GET_LOGOUT
+    type: GET_LOGOUT,
+    payload: data
   }
 }
 
@@ -103,8 +104,13 @@ export default function reducer(state = initialState, action) {
         loading: false
       }
 
-    case `${GET_LOGOUT}`:
-      console.log("Logged out!");
+    case `${GET_LOGOUT}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${GET_LOGOUT}_FULFILLED`:
       return {
         ...state,
         user_id: null,

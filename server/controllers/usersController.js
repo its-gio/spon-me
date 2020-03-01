@@ -32,7 +32,7 @@ async function login(req, res) {
 
 function logout(req, res) {
   req.session.destroy();
-  res.status(200).json(req.session);
+  res.sendStatus(200);
 }
 
 function getSession(req, res) {
