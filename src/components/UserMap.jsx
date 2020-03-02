@@ -17,7 +17,9 @@ function UserMap(props) {
     zoom: 17
   })
 
-  const [navActive, setNavActive] = useState({ active: false })
+  const [navActive, setNavActive] = useState({ active: false });
+
+  const [userEdit, setUserEdit] = useState({ active: false });
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -50,8 +52,8 @@ function UserMap(props) {
         <FaBars />
       </div>
 
-      <Navbar active={navActive.active} setNavActive={setNavActive} />
-      <Modal />
+      <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
+      { userEdit.active ? <Modal setUserEdit={setUserEdit} /> : "" }
     </div>
   )
 }
