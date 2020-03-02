@@ -18,6 +18,7 @@ const REQUEST_LOGIN = "REQUEST_LOGIN";
 const GET_SESSION = "GET_SESSION";
 const GET_LOGOUT = "GET_LOGOUT";
 const PUT_USER_EDIT = "PUT_USER_EDIT";
+const DELETE_USER = "DELETE_USER";
 
 // Export Functions
 export function requestRegister(first_name, last_name, email, password) {
@@ -61,6 +62,15 @@ export function editUser({ user_id, first_name, last_name, email }) {
 
   return {
     type: PUT_USER_EDIT,
+    payload: data
+  }
+}
+
+export function deleteUser(user_id) {
+  const data = axios.delete(`/auth/delete/user/${user_id}`).catch(err => console.error(err));
+
+  return {
+    type: DELETE_USER,
     payload: data
   }
 }
@@ -146,6 +156,22 @@ export default function reducer(state = initialState, action) {
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
         email: payload.data.email,
+        loading: false
+      }
+
+    case `${DELETE_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${DELETE_USER}_FULFILLED`:
+      return {
+        ...state,
+        user_id: null,
+        first_name: null,
+        last_name: null,
+        email: null,
         loading: false
       }
 
