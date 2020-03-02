@@ -19,6 +19,7 @@ const Navbar = (props) => {
         <li>Friends List</li>
         <li onClick={activateEdit}>Edit Account</li>
         <li onClick={props.logout}>Logout</li>
+        <li className="deleteBtn">Delete Account</li>
       </ul>
     </div>
   )

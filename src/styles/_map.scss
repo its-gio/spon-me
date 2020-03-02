@@ -23,6 +23,7 @@
     left: 0;
     transform: translateX(100%);
     transition: transform 500ms ease-in;
+    z-index: 9;
     
     &.active{
       transform: translateX(0);
@@ -52,6 +53,15 @@
         margin: 20px 10px;
         text-decoration: underline;
         cursor: pointer;
+
+        &.deleteBtn {
+          position: absolute;
+          font-size: .75rem;
+          right: 0;
+          color: red;
+          bottom: -85%;
+          text-decoration: none;
+        }
       }
     }
   }
