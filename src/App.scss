@@ -38,6 +38,10 @@ button {
   border: none;
   color: white;
   background-color: #1aae9f;
+
+  &.cancelBtn {
+    background-color: #d3455b;
+  }
 }
 
 ul { list-style: none; }

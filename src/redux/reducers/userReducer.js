@@ -17,6 +17,7 @@ const REQUEST_REGISTER = "REQUEST_REGISTER";
 const REQUEST_LOGIN = "REQUEST_LOGIN";
 const GET_SESSION = "GET_SESSION";
 const GET_LOGOUT = "GET_LOGOUT";
+const PUT_USER_EDIT = "PUT_USER_EDIT";
 
 // Export Functions
 export function requestRegister(first_name, last_name, email, password) {
@@ -51,6 +52,15 @@ export function logout() {
 
   return {
     type: GET_LOGOUT,
+    payload: data
+  }
+}
+
+export function editUser({ user_id, first_name, last_name, email }) {
+  const data = axios.put(`/auth/edit/user/${user_id}`, { first_name, last_name, email }).catch(err => console.error(err));
+
+  return {
+    type: PUT_USER_EDIT,
     payload: data
   }
 }
@@ -120,6 +130,22 @@ export default function reducer(state = initialState, action) {
         first_name: null,
         last_name: null,
         email: null,
+        loading: false
+      }
+
+    case `${PUT_USER_EDIT}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${PUT_USER_EDIT}_FULFILLED`:
+      return {
+        ...state,
+        user_id: payload.data.user_id,
+        first_name: payload.data.first_name,
+        last_name: payload.data.last_name,
+        email: payload.data.email,
         loading: false
       }
 

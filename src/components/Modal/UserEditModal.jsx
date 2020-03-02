@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
+
+import { editUser } from '../../redux/reducers/userReducer'
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -28,10 +29,18 @@ class Modal extends React.Component {
   
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  cancelEdit = e => {
+    this.props.setUserEdit({ active: false })
+  }
+
   handleSubmit = e => {
+    console.log("Running")
     e.preventDefault();
 
-    console.log(this.state)
+    const { user_id } = this.props.user;
+    this.props.editUser({...this.state, user_id});
+
+    this.cancelEdit()
   }
 
   render () {
@@ -41,8 +50,10 @@ class Modal extends React.Component {
         <input required onChange={this.handleChange} className="form__name" value={this.state.last_name} name="last_name" placeholder="Last Name" type="text"/>
         <input required onChange={this.handleChange} className="form__email" value={this.state.email} name="email" placeholder="Email" type="email"/>
         {/* <input onChange={this.handleChange} className="form__password" value={this.state.password} name="password" placeholder="Password" type="password"/> */}
-        <button onClick={() => this.props.setUserEdit({ active: false })}>Cancel</button>
-        <button>Confirm</button>
+        <div>
+          <button>Confirm</button>
+          <button className="cancelBtn" onClick={this.cancelEdit}>Cancel</button>
+        </div>
       </form>,
       this.el
     )
@@ -51,4 +62,4 @@ class Modal extends React.Component {
 
 const mapStateToProps = (reduxState) => ({ user: reduxState.user })
 
-export default connect(mapStateToProps ,{})(Modal);
+export default connect(mapStateToProps, { editUser })(Modal);
