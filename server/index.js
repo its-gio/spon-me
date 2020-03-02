@@ -5,7 +5,7 @@ const massive = require("massive");
 const session = require("express-session");
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const { register, login, logout, getSession, editUser } = require('./controllers/usersController');
+const { register, login, logout, getSession, editUser, deleteUser } = require('./controllers/usersController');
 const checkUserSession = require('./middlewares/checkUserSessions')
 
 massive(CONNECTION_STRING)
@@ -27,5 +27,6 @@ app
   .get('/auth/logout', logout)
   .get('/auth/session', getSession)
   .put('/auth/edit/user/:id', editUser)
+  .delete('/auth/delete/user/:id', deleteUser)
 
 app.listen(SERVER_PORT, () => console.log(`Roger Rodger on port ${SERVER_PORT}`));

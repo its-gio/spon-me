@@ -52,10 +52,20 @@ async function editUser(req, res) {
   return res.status(200).json(req.session.user);
 }
 
+async function deleteUser(req, res) {
+  const { id } = req.params;
+  const db = req.app.get('db');
+
+  await db.delete_user(id);
+  req.session.destroy();
+  res.sendStatus(200);
+}
+
 module.exports = {
   register,
   login,
   logout,
   getSession,
-  editUser
+  editUser,
+  deleteUser
 }
