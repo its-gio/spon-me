@@ -6,6 +6,7 @@ import { getSession } from '../redux/reducers/userReducer';
 import { FaBars } from "react-icons/fa";
 
 import Navbar from './UserMap/Navbar'
+import Modal from './Modal/Modal'
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -50,6 +51,7 @@ function UserMap(props) {
       </div>
 
       <Navbar active={navActive.active} setNavActive={setNavActive} />
+      <Modal />
     </div>
   )
 }
