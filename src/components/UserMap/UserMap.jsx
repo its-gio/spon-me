@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
 import { getSession } from '../../redux/reducers/userReducer';
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaPlus, FaMapMarkerAlt } from "react-icons/fa";
 
 import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
@@ -54,6 +54,10 @@ function UserMap(props) {
 
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
       { userEdit.active ? <UserEditModal setUserEdit={setUserEdit} /> : "" }
+
+      <div onClick="test" className="map--addEvent">
+        <FaPlus />
+      </div>
     </div>
   )
 }
