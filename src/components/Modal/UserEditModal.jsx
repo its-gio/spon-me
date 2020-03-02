@@ -6,14 +6,17 @@ const modalRoot = document.getElementById('modal-root');
 
 class Modal extends React.Component {
   state = {
-    first_name: 'First',
-    last_name: 'Last',
-    email: 'email@email.com'
+    first_name: '',
+    last_name: '',
+    email: ''
   }
 
   el = document.createElement('div');
 
   componentDidMount() {
+    const { first_name, last_name, email } = this.props.user
+    this.setState({ first_name, last_name, email })
+    
     this.el.classList.add("modal-container");
     modalRoot.appendChild(this.el);
   }
@@ -37,6 +40,6 @@ class Modal extends React.Component {
   }
 }
 
+const mapStateToProps = (reduxState) => ({ user: reduxState.user })
 
-
-export default connect(null ,{})(Modal);
+export default connect(mapStateToProps ,{})(Modal);

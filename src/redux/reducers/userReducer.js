@@ -71,6 +71,7 @@ export default function reducer(state = initialState, action) {
         user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
+        email: payload.data.email,
         loading: false
       }
 
@@ -86,6 +87,7 @@ export default function reducer(state = initialState, action) {
         user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
+        email: payload.data.email,
         loading: false
       }
 
@@ -101,6 +103,7 @@ export default function reducer(state = initialState, action) {
         user_id: payload.data.user_id,
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
+        email: payload.data.email,
         loading: false
       }
 
@@ -116,6 +119,7 @@ export default function reducer(state = initialState, action) {
         user_id: null,
         first_name: null,
         last_name: null,
+        email: null,
         loading: false
       }
 

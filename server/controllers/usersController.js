@@ -11,7 +11,7 @@ async function register(req, res) {
   const registeredUser = await db.register_user(first_name, last_name, email, hash);
   
   const user = registeredUser[0];
-  req.session.user = { user_id: user.user_id, first_name: user.first_name, last_name: user.last_name }
+  req.session.user = { user_id: user.user_id, first_name: user.first_name, last_name: user.last_name, email: user.email }
   return res.status(201).json(req.session.user);
 }
 
@@ -24,7 +24,7 @@ async function login(req, res) {
   const user = foundUser[0];
   const isAuthenticated = await bcrypt.compare(password, user.hash);
   if (isAuthenticated === true) {
-    req.session.user = { user_id: user.user_id, first_name: user.first_name, last_name: user.last_name };
+    req.session.user = { user_id: user.user_id, first_name: user.first_name, last_name: user.last_name, email: user.email };
     return res.status(200).json(req.session.user);
   }
   return res.status(403).json('Incorrect password');

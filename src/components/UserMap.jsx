@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 import { getSession } from '../redux/reducers/userReducer';
 import { FaBars } from "react-icons/fa";
 
 import Navbar from './UserMap/Navbar'
-import Modal from './Modal/Modal'
+import UserEditModal from './Modal/UserEditModal';
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -53,7 +53,7 @@ function UserMap(props) {
       </div>
 
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
-      { userEdit.active ? <Modal setUserEdit={setUserEdit} /> : "" }
+      { userEdit.active ? <UserEditModal setUserEdit={setUserEdit} /> : "" }
     </div>
   )
 }
