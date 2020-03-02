@@ -6,8 +6,18 @@ CREATE TABLE events
   event_id SERIAL PRIMARY KEY,
   category VARCHAR(50),
   description TEXT,
-  location TEXT
+  long FLOAT,
+  lati FLOAT,
+  start_time TIME,
+  end_time TIME
 );
+
+-- {
+--   "category": "Harry Potter Univers",
+--   "description": "Exploring the Harry Potter Universe. Won't you join us!?",
+
+-- }
+
 
 CREATE TABLE users
 (
@@ -31,3 +41,6 @@ CREATE TABLE users
 -- 	"email": "media@its-g.io",
 -- 	"password": "password" 
 -- }
+
+-- select TO_CHAR(starttime :: TIME, 'HH:MI') as starttime, TO_CHAR(endtime :: TIME, 'HH:MI') as endtime
+-- from events where users_id = $1

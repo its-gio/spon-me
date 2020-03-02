@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
-import { getSession } from '../redux/reducers/userReducer';
+import { getSession } from '../../redux/reducers/userReducer';
 import { FaBars } from "react-icons/fa";
 
-import Navbar from './UserMap/Navbar'
-import UserEditModal from './Modal/UserEditModal';
+import Navbar from './Navbar'
+import UserEditModal from '../Modal/UserEditModal';
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -28,7 +28,7 @@ function UserMap(props) {
         setViewport({...viewport, latitude, longitude})
       })
     } else {
-      console.error('Geolocation is not supported!')
+      alert('Geolocation is not supported!')
     }
 
     props.getSession()
