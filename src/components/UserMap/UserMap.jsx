@@ -3,10 +3,11 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
 import { getSession } from '../../redux/reducers/userReducer';
-import { FaBars, FaPlus, FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
+import Btns from './Btns'
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -18,8 +19,8 @@ function UserMap(props) {
   })
 
   const [navActive, setNavActive] = useState({ active: false });
-
   const [userEdit, setUserEdit] = useState({ active: false });
+  const [createBeacon, setCreateBeacon] = useState({ active: false });
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -48,16 +49,9 @@ function UserMap(props) {
       >
       </ReactMapGL>
 
-      <div onClick={() => setNavActive({ active: true })} className="map--navbtn">
-        <FaBars />
-      </div>
-
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
+      <Btns createBeacon={createBeacon} setCreateBeacon={setCreateBeacon} setNavActive={setNavActive} />
       { userEdit.active ? <UserEditModal setUserEdit={setUserEdit} /> : "" }
-
-      <div onClick="test" className="map--addEvent">
-        <FaPlus />
-      </div>
     </div>
   )
 }
