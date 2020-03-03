@@ -27,6 +27,6 @@ app
   .get('/auth/session', getSession)
   .put('/user/edit/:id', editUser)
   .delete('/user/delete/:id', deleteUser)
-  post('/event/add', )
+  // post('/event/add', )
 
 app.listen(SERVER_PORT, () => console.log(`Roger Rodger on port ${SERVER_PORT}`));

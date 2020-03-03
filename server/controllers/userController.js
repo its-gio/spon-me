@@ -3,7 +3,7 @@ async function editUser(req, res) {
   const { id } = req.params;
   const db = req.app.get('db');
 
-  const emailCheck = await db.get_user(email);
+  const emailCheck = await db.user.get_user(email);
   if (emailCheck.length !== 0 && emailCheck[0].email !== req.session.user.email) return res.status(409).json('Email taken');
 
   await db.user.edit_user(id, first_name, last_name, email);
