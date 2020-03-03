@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS events;
 CREATE TABLE events
 (
   event_id SERIAL PRIMARY KEY,
+  discussion_leader INT,
   category VARCHAR(50),
   description TEXT,
   long FLOAT,
@@ -30,8 +31,6 @@ CREATE TABLE users
 (40),
   email TEXT UNIQUE,
   hash TEXT,
-  discussion_leader BOOLEAN,
-  available BOOLEAN,
   has_arrived BOOLEAN
 );
 
