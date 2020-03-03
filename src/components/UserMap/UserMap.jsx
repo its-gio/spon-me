@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
 import { getSession } from '../../redux/reducers/userReducer';
-import { FaMapMarkerAlt } from "react-icons/fa";
 
 import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
