@@ -5,8 +5,8 @@ const massive = require("massive");
 const session = require("express-session");
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const { register, login, logout, getSession, editUser, deleteUser } = require('./controllers/usersController');
-const checkUserSession = require('./middlewares/checkUserSessions')
+const { register, login, logout, getSession } = require('./controllers/authController');
+const { editUser, deleteUser } = require('./controllers/userController')
 
 massive(CONNECTION_STRING)
   .then(db => app.set('db', db))
@@ -21,7 +21,6 @@ app
       resave: false,
     })
   )
-  .use(checkUserSession)
   .post('/auth/register', register)
   .post('/auth/login', login)
   .get('/auth/logout', logout)
