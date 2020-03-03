@@ -53,7 +53,7 @@ function UserMap(props) {
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
       <Btns createBeacon={createBeacon} setCreateBeacon={setCreateBeacon} setEventDetails={setEventDetails} setNavActive={setNavActive} />
       { userEdit.active ? <UserEditModal setUserEdit={setUserEdit} /> : "" }
-      { eventDetails.active ? <EventDetailsModal setEventDetails={setEventDetails} /> : "" }
+      { eventDetails.active ? <EventDetailsModal lati={viewport.latitude} long={viewport.longitude}  setEventDetails={setEventDetails} /> : "" }
     </div>
   )
 }
