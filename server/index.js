@@ -7,6 +7,7 @@ const session = require("express-session");
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { register, login, logout, getSession } = require('./controllers/authController');
 const { editUser, deleteUser } = require('./controllers/userController');
+const { createEvent } = require('./controllers/eventsController');
 
 massive(CONNECTION_STRING)
   .then(db => app.set('db', db))
@@ -27,6 +28,6 @@ app
   .get('/auth/session', getSession)
   .put('/user/edit/:id', editUser)
   .delete('/user/delete/:id', deleteUser)
-  // post('/event/add', )
+  .post('/event/add', createEvent)
 
 app.listen(SERVER_PORT, () => console.log(`Roger Rodger on port ${SERVER_PORT}`));
