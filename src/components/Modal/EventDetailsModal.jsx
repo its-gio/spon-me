@@ -28,6 +28,10 @@ class UserEditModal extends React.Component {
     return (
       <div className="modal-container">
         <form onSubmit={this.handleSubmit} className="form">
+          <input placeholder="Category" type="text"/>
+          <input placeholder="Start Time" type="time"/>
+          <input placeholder="End Time" type="time"/>
+          <textarea placeholder="Comments and/or Directions" type="text"/>
           <div>
             <button>Confirm</button>
             <button className="cancelBtn" onClick={this.cancelEdit}>Cancel</button>

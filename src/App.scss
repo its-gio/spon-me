@@ -19,11 +19,11 @@ h1 {
   font-weight: 100;
 }
 
-h2, h3, h4, h5, h6, input, button {
+h2, h3, h4, h5, h6, input, button, textarea {
   font-family: 'Merriweather Sans';
 }
 
-input {
+input, textarea {
   border: 2px #999 solid;
   padding: 5px;
   border-radius: 3px;
