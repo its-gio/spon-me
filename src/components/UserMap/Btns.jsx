@@ -1,8 +1,16 @@
 import React from 'react'
 import { FaBars, FaPlus, FaCheck, FaTimes, FaMapMarkerAlt } from "react-icons/fa";
 
-
 export default function Btns(props) {
+  const locationAgreed = () => {
+    let results = window.confirm("Are you sure this location?")
+
+    if (results) {
+      props.setCreateBeacon({ active: false })
+      props.setEventDetails({ active: true })
+    }
+  }
+
   return (
     <>
       {
@@ -13,7 +21,7 @@ export default function Btns(props) {
           <div onClick={() => props.setCreateBeacon({ active: false })} className="map--addEvent x">
             <FaTimes />
           </div>
-          <div onClick={() => console.log("check clicked")} className="map--addEvent check">
+          <div onClick={locationAgreed} className="map--addEvent check">
             <FaCheck />
           </div>
         </>

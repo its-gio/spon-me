@@ -6,6 +6,7 @@ import { getSession } from '../../redux/reducers/userReducer';
 
 import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
+import EventDetailsModal from '../Modal/EventDetailsModal';
 import Btns from './Btns'
 
 function UserMap(props) {
@@ -19,6 +20,7 @@ function UserMap(props) {
 
   const [navActive, setNavActive] = useState({ active: false });
   const [userEdit, setUserEdit] = useState({ active: false });
+  const [eventDetails, setEventDetails] = useState({ active: false });
   const [createBeacon, setCreateBeacon] = useState({ active: false });
 
   useEffect(() => {
@@ -49,8 +51,9 @@ function UserMap(props) {
       </ReactMapGL>
 
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
-      <Btns createBeacon={createBeacon} setCreateBeacon={setCreateBeacon} setNavActive={setNavActive} />
+      <Btns createBeacon={createBeacon} setCreateBeacon={setCreateBeacon} setEventDetails={setEventDetails} setNavActive={setNavActive} />
       { userEdit.active ? <UserEditModal setUserEdit={setUserEdit} /> : "" }
+      { eventDetails.active ? <EventDetailsModal setEventDetails={setEventDetails} /> : "" }
     </div>
   )
 }
