@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS event_users;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users
 (
@@ -21,17 +21,19 @@ CREATE TABLE events
   description TEXT,
   long FLOAT,
   lati FLOAT,
-  start_time DATE,
-  end_time DATE
+  start_time TIMESTAMP
+  WITH TIME ZONE,
+  end_time TIMESTAMP
+  WITH TIME ZONE
 );
 
-CREATE TABLE event_users
-(
-  eu_id SERIAL PRIMARY KEY,
-  event_id INT REFERENCES events(event_id),
-  user_id INT REFERENCES users(user_id),
-  has_arrived BOOLEAN
-)
+  CREATE TABLE event_users
+  (
+    eu_id SERIAL PRIMARY KEY,
+    event_id INT REFERENCES events(event_id),
+    user_id INT REFERENCES users(user_id),
+    has_arrived BOOLEAN
+  )
 
 -- {
 -- 	'category': 'Crepes',
