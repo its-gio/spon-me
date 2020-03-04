@@ -40,7 +40,7 @@ export function requestLogin(email, password) {
 }
 
 export function getSession() {
-  const data = axios.get('/auth/session').catch(err => console.error(err));
+  const data = axios.get('/auth/session');
 
   return {
     type: GET_SESSION,
@@ -49,7 +49,7 @@ export function getSession() {
 }
 
 export function logout() {
-  const data = axios.get('/auth/logout').catch(err => console.error(err));
+  const data = axios.get('/auth/logout');
 
   return {
     type: GET_LOGOUT,
@@ -58,7 +58,7 @@ export function logout() {
 }
 
 export function editUser({ user_id, first_name, last_name, email }) {
-  const data = axios.put(`/user/edit/${user_id}`, { first_name, last_name, email }).catch(err => console.error(err));
+  const data = axios.put(`/user/edit/${user_id}`, { first_name, last_name, email });
 
   return {
     type: PUT_USER_EDIT,
@@ -67,7 +67,7 @@ export function editUser({ user_id, first_name, last_name, email }) {
 }
 
 export function deleteUser(user_id) {
-  const data = axios.delete(`/user/delete/${user_id}`).catch(err => console.error(err));
+  const data = axios.delete(`/user/delete/${user_id}`);
 
   return {
     type: DELETE_USER,
@@ -124,6 +124,12 @@ export default function reducer(state = initialState, action) {
         first_name: payload.data.first_name,
         last_name: payload.data.last_name,
         email: payload.data.email,
+        loading: false
+      }
+
+    case `${GET_SESSION}_REJECTED`:
+      return {
+        ...state,
         loading: false
       }
 
