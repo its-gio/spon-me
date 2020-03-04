@@ -36,42 +36,20 @@ CREATE TABLE events
   )
 
 -- {
--- 	'category': 'Crepes',
--- 	'description': 'We are in the dark alleyway behand the creepy building. Join us!',
--- 	'long': -96.80153334971428,
--- 	'lati': 32.7767217344625,
--- 	'start_time': '8:00',
--- 	'end_time': '9:00' 
+-- 	"category": "Bird Watching,
+-- 	"description": "We are in the park. Come down!",
+-- 	"long": -96.79657326963051,
+-- 	"lati": 32.777674995703215,
+-- 	"start_time": "2020-3-4 18:30:00",
+-- 	"end_time": "2020-3-4 20:00:00"
 -- }
 -- {
--- 	'category': 'Bird Watching',
--- 	'description': 'We are in the park. Come down!',
--- 	'long': -96.79657326963051,
--- 	'lati': 32.777674995703215,
--- 	'start_time': '18:00',
--- 	'end_time': '19:00' 
--- }
-
--- INSERT INTO events (category, description, long, lati, date, start_time, end_time)
--- VALUES
--- (
---   'Crepes',
---   'We are in the dark alleyway behand the creepy building. Join us!',
---   -96.80153334971428,
---   32.7767217344625,
---   '18:00',
---   '19:00'
--- )
-
-
-
-
--- {
--- 	"first_name": "Gio",
--- 	"last_name": "Aguirre",
--- 	"email": "media@its-g.io",
--- 	"password": "password" 
+-- 	"category": "Canceled",
+-- 	"description": "We are in the park. Come down!",
+-- 	"long": -96.79657326963051,
+-- 	"lati": 32.777674995703215,
+-- 	"start_time": "2020-3-4 11:30:00",
+-- 	"end_time": "2020-3-4 12:00:00"
 -- }
 
 -- select TO_CHAR(start_time :: TIME, 'HH:MI am') as start_time, TO_CHAR(end_time :: TIME, 'HH:MI am') as end_time
--- from events where users_id = $1
