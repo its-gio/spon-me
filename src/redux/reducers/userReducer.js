@@ -53,7 +53,7 @@ export function logout() {
 }
 
 export function editUser({ user_id, first_name, last_name, email }) {
-  const data = axios.put(`/user/edit/${user_id}`, { first_name, last_name, email });
+  const data = axios.put(`/api/user/${user_id}`, { first_name, last_name, email });
 
   return {
     type: PUT_USER_EDIT,
@@ -62,7 +62,7 @@ export function editUser({ user_id, first_name, last_name, email }) {
 }
 
 export function deleteUser(user_id) {
-  const data = axios.delete(`/user/delete/${user_id}`);
+  const data = axios.delete(`/api/user/${user_id}`);
 
   return {
     type: DELETE_USER,

@@ -6,6 +6,11 @@ async function createEvent(req, res) {
   res.sendStatus(200).json(createdEvent[0]);
 }
 
+async function getEvents(res, req) {
+
+}
+
 module.exports = {
-  createEvent
+  createEvent,
+  getEvents
 }
