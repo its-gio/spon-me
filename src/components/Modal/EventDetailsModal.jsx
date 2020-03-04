@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { postEvent } from '../../redux/reducers/eventReducer';
 
 const today = new Date();
 const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-let clockTime = today.getHours() + ":" + (today.getMinutes());
-let time = today.getHours() + ":" + (today.getMinutes() + 10);
 
 class UserEditModal extends React.Component {
   state = {
     category: '',
-    raw_start: time,
+    raw_start: '',
     raw_end: '',
     description: '',
     long: '',
@@ -27,19 +26,18 @@ class UserEditModal extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    clockTime = today.getHours() + ":" + (today.getMinutes());
-    let clockTimeBool = (this.state.raw_start < clockTime) && (this.state.raw_start < clockTime);
-    let betweenBool = (this.state.raw_end < this.state.raw_start);
-    if (clockTimeBool || betweenBool) return alert("Start time and end time must be after current time.");
+    let clockTime = today.getHours() + ":" + (today.getMinutes());
+    // Check if start time and end time are smaller than current time || end time is smaller than start time.
+    let clockTimeBool = (this.state.raw_start < clockTime) || (this.state.raw_end < clockTime) || (this.state.raw_end < this.state.raw_start);
+    if (clockTimeBool) return alert("Start time and end time must be after current time.");
 
-    const { user_id } = this.props.user;
+    const { category, description, long, lati } = this.state;
     const start_time = `${date} ${this.state.raw_start}`;
     const end_time = `${date} ${this.state.raw_end}`;
 
-    console.log({ user_id, start_time, end_time })
-    // this.props.createEvent({ user_id });
+    this.props.postEvent(category, description, long, lati, start_time, end_time);
 
-    // this.cancelEdit()
+    this.cancelEdit()
   }
 
   render () {
@@ -60,6 +58,4 @@ class UserEditModal extends React.Component {
   }
 }
 
-const mapStateToProps = (reduxState) => ({ user: reduxState.user })
-
-export default connect(mapStateToProps, {  })(UserEditModal);
+export default connect(null, { postEvent })(UserEditModal);
