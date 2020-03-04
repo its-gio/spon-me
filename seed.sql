@@ -57,34 +57,11 @@ CREATE TABLE event_users
 --   'We are in the dark alleyway behand the creepy building. Join us!',
 --   -96.80153334971428,
 --   32.7767217344625,
---   current_date,
 --   '18:00',
 --   '19:00'
 -- )
 
--- INSERT INTO events (category, description, long, lati, date, start_time, end_time)
--- VALUES
--- (
---   'Bird watching',
---   'Watching burds',
---   -96.80153334971428,
---   32.7767217344625,
---   current_date,
---   '19:00',
---   '20:00'
--- )
 
--- INSERT INTO events (category, description, long, lati, date, start_time, end_time)
--- VALUES
--- (
---   'Happi Tyme',
---   'Tyme tu bi Happ!i',
---   -96.80153334971428,
---   32.7767217344625,
---   current_date,
---   '9:00',
---   '11:00'
--- )
 
 
 -- {

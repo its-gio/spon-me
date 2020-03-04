@@ -4,12 +4,7 @@ const initialState = {
   user_id: null,
   first_name: null,
   last_name: null,
-  email: null,
-  event_id: null,
-  discussion_leader: null,
-  available: null,
-  has_arrived: null,
-  loading: false
+  email: null
 }
 
 // Actions
