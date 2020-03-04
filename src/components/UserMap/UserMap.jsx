@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
 import { getSession } from '../../redux/reducers/userReducer';
+import { getEvents } from '../../redux/reducers/eventReducer';
 
 import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
@@ -33,7 +34,8 @@ function UserMap(props) {
       alert('Geolocation is not supported!')
     }
 
-    props.getSession()
+    props.getSession();
+    props.getEvents();
   }, [])
 
   return (
@@ -58,6 +60,6 @@ function UserMap(props) {
   )
 }
 
-const mapStateToProps = (reduxState) => ({ user: reduxState.user })
+const mapStateToProps = (reduxState) => ({ user: reduxState.user, events: reduxState.events.events });
 
-export default connect(mapStateToProps, { getSession })(UserMap)
+export default connect(mapStateToProps, { getSession, getEvents })(UserMap)
