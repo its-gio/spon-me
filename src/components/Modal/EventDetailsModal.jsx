@@ -24,17 +24,23 @@ class UserEditModal extends React.Component {
 
   cancelEdit = () => this.props.setEventDetails({ active: false });
 
+  timeCheck = () => {
+    let clockTime = `${today.getHours()}${today.getMinutes()}`;
+    let testStartTime = this.state.raw_start.split(':').join('')
+    let testEndTime = this.state.raw_end.split(':').join('')
+    // Check if start time and end time are smaller than current time || end time is smaller than start time.
+    let clockTimeBool = (testStartTime < clockTime) || (testEndTime < clockTime) || (testEndTime < testStartTime);
+    return clockTimeBool;
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    let clockTime = today.getHours() + (today.getMinutes());
-    // Check if start time and end time are smaller than current time || end time is smaller than start time.
-    let clockTimeBool = (this.state.raw_start < clockTime) || (this.state.raw_end < clockTime) || (this.state.raw_end < this.state.raw_start);
-    if (clockTimeBool) return alert("Start time and end time must be after current time.");
+    const timeCheckRes = this.timeCheck();
+    if (timeCheckRes) return alert("Start time and end time must be after current time.");
 
     const { category, description, long, lati } = this.state;
     const start_time = `${date} ${this.state.raw_start}`;
     const end_time = `${date} ${this.state.raw_end}`;
-
     this.props.postEvent(category, description, long, lati, start_time, end_time);
 
     this.cancelEdit()
