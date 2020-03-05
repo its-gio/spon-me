@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import React, { useState } from 'react';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
 
 function Map(props) {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   return (
     <ReactMapGL
       {...props.viewport}
@@ -15,9 +17,17 @@ function Map(props) {
     >
       {
         props.events.map(event => (
-          <Marker key={event.event_id} latitude={event.lati} longitude={event.long}></Marker>
+          <Marker key={event.event_id} latitude={event.lati} longitude={event.long}>
+            <div onClick={() => setSelectedEvent(event)} className="event-area"></div>
+          </Marker>
         ))
       }
+
+      { selectedEvent ? (
+        <Popup latitude={selectedEvent.lati} longitude={selectedEvent.long} onClose={() => setSelectedEvent(null)}>
+          <div>Stuff</div>
+        </Popup>
+      ) : null }
   </ReactMapGL>
   )
 }
