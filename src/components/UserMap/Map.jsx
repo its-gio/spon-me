@@ -15,9 +15,7 @@ function Map(props) {
     >
       {
         props.events.map(event => (
-          <Marker key={event.event_id} latitude={event.lati} longitude={event.long}>
-            <p>Workign!</p>
-          </Marker>
+          <Marker key={event.event_id} latitude={event.lati} longitude={event.long}></Marker>
         ))
       }
   </ReactMapGL>
