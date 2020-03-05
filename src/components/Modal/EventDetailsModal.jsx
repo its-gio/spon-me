@@ -26,7 +26,7 @@ class UserEditModal extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let clockTime = today.getHours() + ":" + (today.getMinutes());
+    let clockTime = today.getHours() + (today.getMinutes());
     // Check if start time and end time are smaller than current time || end time is smaller than start time.
     let clockTimeBool = (this.state.raw_start < clockTime) || (this.state.raw_end < clockTime) || (this.state.raw_end < this.state.raw_start);
     if (clockTimeBool) return alert("Start time and end time must be after current time.");
