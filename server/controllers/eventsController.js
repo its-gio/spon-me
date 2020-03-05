@@ -10,11 +10,11 @@ async function getEvents(req, res) {
   const db = req.app.get('db');
 
   const gottenEvents = await db.events.get_events().catch(() => res.status(501).json('Get Events failed'))
-
+  
   res.status(200).json(gottenEvents);
 }
 
 module.exports = {
   createEvent,
-  getEvents
+  getEvents,
 }

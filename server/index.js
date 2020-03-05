@@ -7,7 +7,7 @@ const session = require("express-session");
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { register, login, logout, getSession } = require('./controllers/authController');
 const { editUser, deleteUser } = require('./controllers/userController');
-const { createEvent, getEvents } = require('./controllers/eventsController');
+const { getEvents, createEvent, } = require('./controllers/eventsController');
 
 massive(CONNECTION_STRING)
   .then(db => app.set('db', db))
