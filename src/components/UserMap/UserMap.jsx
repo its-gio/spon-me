@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactMapGL from 'react-map-gl';
 import { getSession } from '../../redux/reducers/userReducer';
 import { getEvents } from '../../redux/reducers/eventReducer';
 
@@ -9,6 +8,7 @@ import Navbar from './Navbar'
 import UserEditModal from '../Modal/UserEditModal';
 import EventDetailsModal from '../Modal/EventDetailsModal';
 import Btns from './Btns'
+import Map from './Map';
 
 function UserMap(props) {
   const [viewport, setViewport] = useState({
@@ -41,16 +41,11 @@ function UserMap(props) {
   return (
     <div className="map">
       { props.user.user_id === null  ? <Redirect to="/" /> : null }
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
-        mapStyle='mapbox://styles/its-gio/ck73qpski1ssc1io7mtpotq0i'
-        onViewportChange={viewport => {
-            setViewport(viewport)
-          }
-        }
-      >
-      </ReactMapGL>
+      {
+        props.events ?
+        <Map viewport={viewport} setViewport={setViewport} events={props.events} /> :
+        null
+      }
 
       <Navbar active={navActive.active} setNavActive={setNavActive} setUserEdit={setUserEdit} />
       <Btns createBeacon={createBeacon} setCreateBeacon={setCreateBeacon} setEventDetails={setEventDetails} setNavActive={setNavActive} />
