@@ -6,3 +6,11 @@
   border: 3px solid #1aae9f;
   transform-origin: 50% 50%;
 }
+
+.mapboxgl-popup-content {
+  padding-top: 20px !important;
+}
+
+.mapboxgl-popup-close-button {
+  color: #333;
+}

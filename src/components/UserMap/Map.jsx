@@ -25,7 +25,16 @@ function Map(props) {
 
       { selectedEvent ? (
         <Popup offsetTop={-55} latitude={selectedEvent.lati} longitude={selectedEvent.long} onClose={() => setSelectedEvent(null)}>
-          <div>Stuff</div>
+          <h6>Category: {selectedEvent.category}</h6>
+          {selectedEvent.description ? <p>{selectedEvent.description}</p> : ""}
+          <p>Start:{selectedEvent.start_time}</p>
+          <p>End:{selectedEvent.end_time}</p>
+          <p>Current Group:</p>
+          {/* <ul>
+            <li></li>
+          </ul> */}
+
+
         </Popup>
       ) : null }
   </ReactMapGL>
