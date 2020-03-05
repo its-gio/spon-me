@@ -17,14 +17,14 @@ function Map(props) {
     >
       {
         props.events.map(event => (
-          <Marker key={event.event_id} latitude={event.lati} longitude={event.long}>
+          <Marker offsetLeft={-50} offsetTop={-50} key={event.event_id} latitude={event.lati} longitude={event.long}>
             <div onClick={() => setSelectedEvent(event)} className="event-area"></div>
           </Marker>
         ))
       }
 
       { selectedEvent ? (
-        <Popup latitude={selectedEvent.lati} longitude={selectedEvent.long} onClose={() => setSelectedEvent(null)}>
+        <Popup offsetTop={-55} latitude={selectedEvent.lati} longitude={selectedEvent.long} onClose={() => setSelectedEvent(null)}>
           <div>Stuff</div>
         </Popup>
       ) : null }
