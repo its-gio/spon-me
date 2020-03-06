@@ -18,7 +18,7 @@ function Map(props) {
     >
       {
         props.events.map(event => (
-          <Marker offsetLeft={-50} offsetTop={-50} key={event.event_id} latitude={event.lati} longitude={event.long}>
+          <Marker offsetLeft={-25} offsetTop={-25} key={event.event_id} latitude={event.lati} longitude={event.long}>
             <div onClick={() => setSelectedEvent(event)} className="event-area"></div>
           </Marker>
         ))
