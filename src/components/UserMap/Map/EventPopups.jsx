@@ -22,7 +22,7 @@ function EventPopups(props) {
   return (
     <>
       { props.selectedEvent ? (
-        <Popup offsetTop={-25} offsetLeft={25} latitude={props.selectedEvent.lati} longitude={props.selectedEvent.long} onClose={() => props.setSelectedEvent(null)}>
+        <Popup offsetTop={-25} offsetLeft={25} latitude={props.selectedEvent.lati} longitude={props.selectedEvent.long} closeOnClick={false} onClose={() => props.setSelectedEvent(null)}>
           <h5>Category: {props.selectedEvent.category}</h5>
           {props.selectedEvent.description ? <p>{props.selectedEvent.description}</p> : ""}
           <p>Start: {props.selectedEvent.start_time}</p>
@@ -34,7 +34,7 @@ function EventPopups(props) {
             null
           }
 
-          <EventBtns attendees={props.selectedEvent.attendees} />
+          <EventBtns setSelectedEvent={props.setSelectedEvent} attendees={props.selectedEvent.attendees} event_id={props.selectedEvent.event_id} />
         </Popup>
       ) : null } 
     </>

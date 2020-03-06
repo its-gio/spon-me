@@ -7,6 +7,7 @@ const initialState = {
 // Actions
 const POST_EVENT = 'POST_EVENT';
 const GET_EVENT = 'GET_EVENT';
+const JOIN_EVENT = 'JOIN_EVENT';
 
 // Export Functions
 export function postEvent(category, description, long, lati, start_time, end_time) {
@@ -27,6 +28,16 @@ export function getEvents() {
   }
 }
 
+export function joinEvent(event_id) {
+  const data = axios.post('/api/attendee/', {event_id})
+
+  return {
+    type: JOIN_EVENT,
+    payload: data
+  }
+}
+
+// Reducer export default
 export default function reducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
@@ -52,6 +63,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         events: payload.data,
+        loading: false
+      }
+
+    case `${JOIN_EVENT}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case `${JOIN_EVENT}_FULFILLED`:
+      return {
+        ...state,
         loading: false
       }
 
