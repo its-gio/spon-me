@@ -1,19 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 function AttendeesList(props) {
-  const getGroups = (Bool) => props.attendees.map((attendee, i) => attendee.has_arrived === Bool ? <li key={i}>{attendee.first_name} {attendee.last_name}</li> : null);
+  const [groups, setGroups] = useState(null);
+
+  useEffect(() => {
+    groupAttendees();
+  }, [])
+
+  const groupAttendees = () => {
+    const cgCheck = props.attendees.filter(attendee => attendee.has_arrived === true);
+    const otwCheck = props.attendees.filter(attendee => attendee.has_arrived === false);
+    const CG = cgCheck.map((attendee, i) => <li key={i}>{attendee.first_name} {attendee.last_name}</li>)
+    const OTW = otwCheck.map((attendee, i) => <li key={i}>{attendee.first_name} {attendee.last_name}</li>)
+
+    setGroups({CG, OTW});
+  }
+
+  // attendee.has_arrived === Bool ? <li key={i}>{attendee.first_name} {attendee.last_name}</li> : null
 
   return (
     <>
       {
-        getGroups(true) ?
-        <><p>Current Group:</p><ul>{ getGroups(true) }</ul></> :
+        groups !== null && groups.CG.length !== 0 ?
+        <><p>Current Group:</p><ul>{ groups.CG }</ul></> :
         null
       }
 
       {
-        getGroups(false) ?
-        <><p>On Their Way:</p><ul>{ getGroups(false) }</ul></> :
+        groups !== null && groups.OTW.length !== 0 ?
+        <><p>On Their Way:</p><ul>{ groups.OTW }</ul></> :
         null
       }
     </>

@@ -9,13 +9,13 @@ function EventPopups(props) {
     const clockTime = `${today.getHours()}${today.getMinutes()}`;
     const timeSplit = props.selectedEvent.start_time.split(" ");
     const startTime = timeSplit[1] === 'am' ? timeSplit[0].split(":").join('') : +timeSplit[0].split(':').join('') + 1200;
-    return clockTime < startTime;
+    return clockTime > startTime;
   }
 
   return (
     <>
       { props.selectedEvent ? (
-        <Popup offsetTop={-55} latitude={props.selectedEvent.lati} longitude={props.selectedEvent.long} onClose={() => props.setSelectedEvent(null)}>
+        <Popup offsetTop={-25} offsetLeft={25} latitude={props.selectedEvent.lati} longitude={props.selectedEvent.long} onClose={() => props.setSelectedEvent(null)}>
           <h5>Category: {props.selectedEvent.category}</h5>
           {props.selectedEvent.description ? <p>{props.selectedEvent.description}</p> : ""}
           <p>Start: {props.selectedEvent.start_time}</p>
