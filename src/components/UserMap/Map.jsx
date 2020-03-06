@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import EventPopups from './Map/EventPopups';
 
 
 function Map(props) {
@@ -23,21 +24,8 @@ function Map(props) {
         ))
       }
 
-      { selectedEvent ? (
-        <Popup offsetTop={-55} latitude={selectedEvent.lati} longitude={selectedEvent.long} onClose={() => setSelectedEvent(null)}>
-          <h6>Category: {selectedEvent.category}</h6>
-          {selectedEvent.description ? <p>{selectedEvent.description}</p> : ""}
-          <p>Start:{selectedEvent.start_time}</p>
-          <p>End:{selectedEvent.end_time}</p>
-          <p>Current Group:</p>
-          {/* <ul>
-            <li></li>
-          </ul> */}
-
-
-        </Popup>
-      ) : null }
-  </ReactMapGL>
+      <EventPopups selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} />
+    </ReactMapGL>
   )
 }
 
