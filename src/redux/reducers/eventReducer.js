@@ -37,7 +37,6 @@ export default function reducer(state = initialState, action) {
       }
 
     case `${POST_EVENT}_FULFILLED`:
-      console.log(payload.data);
       return {
         ...state,
         loading: false

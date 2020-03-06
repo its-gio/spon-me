@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postEvent } from '../../redux/reducers/eventReducer';
+import { postEvent, getEvents } from '../../redux/reducers/eventReducer';
 
 const today = new Date();
 const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -30,10 +30,12 @@ class UserEditModal extends React.Component {
     let testEndTime = this.state.raw_end.split(':').join('')
     // Check if start time and end time are smaller than current time || end time is smaller than start time.
     let clockTimeBool = (testStartTime < clockTime) || (testEndTime < clockTime) || (testEndTime < testStartTime);
+    // console.log(testStartTime < clockTime, testEndTime < clockTime, testEndTime < testStartTime)
+    // console.log(clockTime, testStartTime, testEndTime)
     return clockTimeBool;
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const timeCheckRes = this.timeCheck();
     if (timeCheckRes) return alert("Start time and end time must be after current time.");
@@ -43,6 +45,7 @@ class UserEditModal extends React.Component {
     const end_time = `${date} ${this.state.raw_end}`;
     this.props.postEvent(category, description, long, lati, start_time, end_time);
 
+    await this.props.getEvents();
     this.cancelEdit()
   }
 
@@ -64,4 +67,4 @@ class UserEditModal extends React.Component {
   }
 }
 
-export default connect(null, { postEvent })(UserEditModal);
+export default connect(null, { postEvent, getEvents })(UserEditModal);
