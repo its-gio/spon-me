@@ -1,9 +1,16 @@
 import React from 'react';
 import { Popup } from 'react-map-gl';
 import AttendeesList from './AttendeesList';
+import EventBtns from './EventBtns';
 
 
 function EventPopups(props) {
+  // const [checkTimeBool, setCheckTimeBool] = useState(false);
+
+  // useEffect(() => {
+  //   setCheckTimeBool(checkTime());
+  // }, [])
+
   const checkTime = () => {
     const today = new Date();
     const clockTime = `${today.getHours()}${today.getMinutes()}`;
@@ -20,11 +27,14 @@ function EventPopups(props) {
           {props.selectedEvent.description ? <p>{props.selectedEvent.description}</p> : ""}
           <p>Start: {props.selectedEvent.start_time}</p>
           <p>End: {props.selectedEvent.end_time}</p>
+
           {
             checkTime() ?
             <AttendeesList attendees={props.selectedEvent.attendees} /> :
             null
           }
+
+          <EventBtns attendees={props.selectedEvent.attendees} />
         </Popup>
       ) : null } 
     </>
