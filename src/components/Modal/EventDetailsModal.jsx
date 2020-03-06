@@ -29,16 +29,15 @@ class UserEditModal extends React.Component {
     let testStartTime = this.state.raw_start.split(':').join('')
     let testEndTime = this.state.raw_end.split(':').join('')
     // Check if start time and end time are smaller than current time || end time is smaller than start time.
-    let clockTimeBool = (testStartTime > clockTime) || (testEndTime > clockTime) || (testEndTime < testStartTime);
-    // console.log(testStartTime > clockTime, testEndTime > clockTime, testEndTime < testStartTime)
+    let clockTimeBool = (testStartTime < clockTime) || (testEndTime < clockTime) || (testEndTime < testStartTime);
+    // console.log(testStartTime < clockTime, testEndTime < clockTime, testEndTime < testStartTime)
     // console.log(clockTime, testStartTime, testEndTime)
     return clockTimeBool;
   }
 
   handleSubmit = async e => {
     e.preventDefault();
-    const timeCheckRes = this.timeCheck();
-    if (timeCheckRes) return alert("Start time and end time must be after current time.");
+    if (this.timeCheck()) return alert("Start time and end time must be after current time.");
 
     const { category, description, long, lati } = this.state;
     const start_time = `${date} ${this.state.raw_start}`;
