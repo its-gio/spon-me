@@ -20,9 +20,9 @@ async function getEvents(req, res) {
   gottenEvents.forEach(event => event.attendees = []);
 
   gottenAttendees.forEach(attendee => {
-    const { first_name, last_name, has_arrived } = attendee
+    const { user_id, first_name, last_name, has_arrived } = attendee
     for (let i = 0; i < eventLength; i++){
-      if (gottenEvents[i].event_id === attendee.event_id) gottenEvents[i].attendees.push({ first_name, last_name, has_arrived });
+      if (gottenEvents[i].event_id === attendee.event_id) gottenEvents[i].attendees.push({ user_id, first_name, last_name, has_arrived });
     }
   })
 
