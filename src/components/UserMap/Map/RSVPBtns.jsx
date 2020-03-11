@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import { joinEvent, getEvents } from '../../../redux/reducers/eventReducer'
+import { joinEvent, getEvents, arrivedEvents } from '../../../redux/reducers/eventReducer'
 
 function RSVPBtns(props) {
   const [RSVP, setRSVP] = useState(false);
@@ -16,6 +16,12 @@ function RSVPBtns(props) {
     props.setSelectedEvent(null);
   }
 
+  const arrivedEvents = async (bool) => {
+    await props.arrivedEvents(bool);
+    await props.getEvents();
+    props.setSelectedEvent(null);
+  }
+
   return (
     <div>
       {
@@ -23,10 +29,16 @@ function RSVPBtns(props) {
         null :
         <button onClick={joinEvent}>Join</button>
       }
+
+      {
+        RSVP && props.checkTime() ?
+        <button onClick={() => arrivedEvents(true)}>I've Arrived!</button> :
+        null
+      }
     </div>
   )
 }
 
 const mapStateToProps = (reduxState) => ({ user_id: reduxState.user.user_id })
 
-export default connect(mapStateToProps, { joinEvent, getEvents })(RSVPBtns);
+export default connect(mapStateToProps, { joinEvent, getEvents, arrivedEvents })(RSVPBtns);
