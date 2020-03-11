@@ -10,7 +10,7 @@ function EventPopups(props) {
     const clockTime = `${today.getHours()}${today.getMinutes()}`;
     const timeSplit = props.selectedEvent.start_time.split(" ");
     const startTime = timeSplit[1] === 'am' ? timeSplit[0].split(":").join('') : +timeSplit[0].split(':').join('') + 1200;
-    return clockTime >= startTime;
+    return +clockTime >= +startTime;
   }
 
   return (
