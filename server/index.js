@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const massive = require("massive");
 const session = require("express-session");
+const path = require('path');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { register, login, logout, getSession } = require('./controllers/authController');
@@ -31,5 +32,11 @@ app
   .get('/api/event/', getEvents)
   .post('/api/event/', createEvent)
   .post('/api/attendee/', joinEvent);
+
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res)=>{
+	res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => console.log(`Roger Rodger on port ${SERVER_PORT}`));
