@@ -1,22 +1,16 @@
 import React from 'react';
 import { Popup } from 'react-map-gl';
 import AttendeesList from './AttendeesList';
-import EventBtns from './EventBtns';
+import RSVPBtns from './RSVPBtns';
 
 
 function EventPopups(props) {
-  // const [checkTimeBool, setCheckTimeBool] = useState(false);
-
-  // useEffect(() => {
-  //   setCheckTimeBool(checkTime());
-  // }, [])
-
   const checkTime = () => {
     const today = new Date();
     const clockTime = `${today.getHours()}${today.getMinutes()}`;
     const timeSplit = props.selectedEvent.start_time.split(" ");
     const startTime = timeSplit[1] === 'am' ? timeSplit[0].split(":").join('') : +timeSplit[0].split(':').join('') + 1200;
-    return clockTime > startTime;
+    return +clockTime >= +startTime;
   }
 
   return (
@@ -34,7 +28,7 @@ function EventPopups(props) {
             null
           }
 
-          <EventBtns setSelectedEvent={props.setSelectedEvent} attendees={props.selectedEvent.attendees} event_id={props.selectedEvent.event_id} />
+          <RSVPBtns setSelectedEvent={props.setSelectedEvent} attendees={props.selectedEvent.attendees} event_id={props.selectedEvent.event_id} checkTime={checkTime} />
         </Popup>
       ) : null } 
     </>

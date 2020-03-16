@@ -16,6 +16,15 @@
     margin: 10px;
     padding: 10px;
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    input[type=time]::-webkit-outer-spin-button,
+    input[type=time]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
     @media (max-width: 800px) {
       input, textarea {
@@ -24,9 +33,9 @@
         font-size: 1.2rem;
       }
 
-      input[type=time] {
-        width: calc(50% - 4px);
-      }
+      // input[type=time] {
+        // width: calc(50% - 4px);
+      // }
     }
   }
 }
